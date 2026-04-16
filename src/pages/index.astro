@@ -1,17 +1,327 @@
 ---
-
+// Ironveil Construction - Single Page Astro Homepage
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Demo 3</title>
-	</head>
-	<body>
-		<h1>Demo 3</h1>
-	</body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ironveil Construction - Northern New England's premier contractor for site work, excavation, and civil construction across NH, VT & ME." />
+  <title>Ironveil Construction | We Build What Others Can't</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=optional" /></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: #0f1923; color: white; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav a { text-decoration: none; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity: 1 !important; transform: translateY(0) !important; }
+    .diamond-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 4l8 14-8 14-8-14z' fill='none' stroke='rgba(74,158,255,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 64px 64px;
+    }
+    .diagonal-bg {
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(74,158,255,0.05) 20px, rgba(74,158,255,0.05) 21px);
+    }
+    @media (min-width: 768px) {
+      .md-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+      .md-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+      .md-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+      .md-flex { display: flex; }
+      .md-text-right { text-align: right; }
+      .md-items-center { align-items: center; }
+      .md-hidden { display: none; }
+    }
+    @media (max-width: 767px) {
+      .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fixed Navigation -->
+  <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 0.3s ease;" aria-label="Main navigation">
+    <div style="max-width:80rem;margin:0 auto;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:1.5rem;">
+        <span style="font-size:1.5rem;font-weight:900;letter-spacing:-0.02em;color:#ffffff;text-transform:uppercase;">IRONVEIL</span>
+        <div style="width:1px;height:1.5rem;background-color:#4a9eff;" aria-hidden="true"></div>
+        <div class="hide-mobile" style="display:flex;align-items:center;gap:2rem;">
+          <a href="#" style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Projects</a>
+          <a href="#" style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Services</a>
+          <a href="#" style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">About</a>
+          <a href="#" style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Contact</a>
+        </div>
+      </div>
+      <button type="button" style="padding:0.625rem 1.25rem;border:2px solid #6ab0ff;color:#6ab0ff;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;background:transparent;cursor:pointer;">
+        Get a Quote
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section style="position:relative;height:100vh;overflow:hidden;">
+    <img
+      src="/hero-poster.webp"
+      alt="Ironveil Construction excavator working on a large construction site"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;"
+      id="hero-poster"
+    />
+    <video
+      autoplay muted loop playsinline
+      preload="metadata"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity 1.2s ease;"
+      id="hero-video"
+    >
+      <source src="/hero.mp4" type="video/mp4" />
+    </video>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(15,25,35,0.55) 0%, rgba(15,25,35,0.3) 50%, rgba(15,25,35,0.75) 100%);z-index:2;" aria-hidden="true"></div>
+
+    <div style="position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 1.5rem 6rem;max-width:80rem;margin:0 auto;">
+      <div class="reveal">
+        <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1rem;">
+          Northern New England's Premier Contractor
+        </p>
+        <h1 style="font-size:clamp(2.5rem,7vw,5rem);font-weight:900;letter-spacing:-0.03em;color:#ffffff;line-height:1;margin-bottom:1rem;">
+          We Build What<br />Others Can't.
+        </h1>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;max-width:36rem;">
+          Site work, excavation, and civil construction across NH, VT &amp; ME
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+          <button type="button" style="padding:0.875rem 1.75rem;background:#1a6db5;color:#ffffff;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;">
+            View Our Work
+          </button>
+          <button type="button" style="padding:0.875rem 1.75rem;border:2px solid #ffffff;color:#ffffff;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:transparent;cursor:pointer;">
+            Get in Touch
+          </button>
+        </div>
+        <div style="display:flex;align-items:center;gap:1.5rem;">
+          <span style="font-size:0.875rem;font-weight:600;color:#ffffff;">125+ Projects</span>
+          <div style="width:1px;height:1rem;background:#4a9eff;" aria-hidden="true"></div>
+          <span style="font-size:0.875rem;font-weight:600;color:#ffffff;">18 Years</span>
+          <div style="width:1px;height:1rem;background:#4a9eff;" aria-hidden="true"></div>
+          <span style="font-size:0.875rem;font-weight:600;color:#ffffff;">3 States</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: SERVICES -->
+  <section style="position:relative;background-color:#0f1923;padding:6rem 1.5rem;">
+    <div style="max-width:80rem;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:4rem;">
+        <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:0.75rem;" aria-hidden="true">What We Do</p>
+        <h2 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:#ffffff;">Built for the toughest jobs.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem;">
+        <div class="reveal" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" style="width:3rem;height:3rem;margin:0 auto 1rem;color:#4a9eff;" fill="none" viewBox="0 0 24 24" stroke="#4a9eff" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="square" stroke-linejoin="miter" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          <h3 style="font-size:1rem;font-weight:700;color:#ffffff;margin-bottom:0.5rem;">Site Preparation</h3>
+          <p style="font-size:0.875rem;color:#a8b8c8;line-height:1.7;">Land clearing, grading, and excavation for any scale project</p>
+        </div>
+        <div class="reveal" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" style="width:3rem;height:3rem;margin:0 auto 1rem;" fill="none" viewBox="0 0 24 24" stroke="#4a9eff" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="square" stroke-linejoin="miter" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+          </svg>
+          <h3 style="font-size:1rem;font-weight:700;color:#ffffff;margin-bottom:0.5rem;">Civil Construction</h3>
+          <p style="font-size:0.875rem;color:#a8b8c8;line-height:1.7;">Roads, drainage, utilities, and infrastructure</p>
+        </div>
+        <div class="reveal" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" style="width:3rem;height:3rem;margin:0 auto 1rem;" fill="none" viewBox="0 0 24 24" stroke="#4a9eff" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="square" stroke-linejoin="miter" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+          </svg>
+          <h3 style="font-size:1rem;font-weight:700;color:#ffffff;margin-bottom:0.5rem;">Commercial Build</h3>
+          <p style="font-size:0.875rem;color:#a8b8c8;line-height:1.7;">Ground-up commercial construction from foundation to finish</p>
+        </div>
+        <div class="reveal" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" style="width:3rem;height:3rem;margin:0 auto 1rem;" fill="none" viewBox="0 0 24 24" stroke="#4a9eff" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="square" stroke-linejoin="miter" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+          </svg>
+          <h3 style="font-size:1rem;font-weight:700;color:#ffffff;margin-bottom:0.5rem;">Heavy Equipment</h3>
+          <p style="font-size:0.875rem;color:#a8b8c8;line-height:1.7;">Owned fleet of excavators, bulldozers, and cranes on every job</p>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(74,158,255,0.2);" aria-hidden="true"></div>
+  </section>
+
+  <!-- SECTION 2: STATS -->
+  <section style="position:relative;background-color:#0f1923;padding:6rem 1.5rem;overflow:hidden;" class="diamond-bg">
+    <div style="position:relative;max-width:80rem;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;text-align:center;">
+        <div class="reveal">
+          <h3 style="font-size:clamp(3rem,6vw,5rem);font-weight:900;color:#4a9eff;line-height:1;margin-bottom:0.5rem;">125+</h3>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Projects Completed</p>
+        </div>
+        <div class="reveal">
+          <h3 style="font-size:clamp(3rem,6vw,5rem);font-weight:900;color:#4a9eff;line-height:1;margin-bottom:0.5rem;">18</h3>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Years in Business</p>
+        </div>
+        <div class="reveal">
+          <h3 style="font-size:clamp(3rem,6vw,5rem);font-weight:900;color:#4a9eff;line-height:1;margin-bottom:0.5rem;">$2.4B</h3>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Contracts Delivered</p>
+        </div>
+        <div class="reveal">
+          <h3 style="font-size:clamp(3rem,6vw,5rem);font-weight:900;color:#4a9eff;line-height:1;margin-bottom:0.5rem;">340</h3>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;">Workers Employed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FEATURED PROJECTS -->
+  <section style="background-color:#f4f5f6;padding:6rem 1.5rem;">
+    <div style="max-width:80rem;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:4rem;">
+        <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#1a6b52;margin-bottom:0.75rem;" aria-hidden="true">Our Work</p>
+        <h2 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:#0f1923;">Projects that speak for themselves.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
+        <div class="reveal" style="border:1px solid #e5e7eb;background:#ffffff;">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800" alt="I-93 Highway Expansion construction site with heavy machinery" style="width:100%;height:14rem;object-fit:cover;display:block;" />
+          <div style="padding:1.5rem;">
+            <h3 style="font-size:1.1rem;font-weight:700;color:#0f1923;margin-bottom:0.5rem;">I-93 Highway Expansion</h3>
+            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a5a99;display:block;margin-bottom:0.5rem;">Civil Infrastructure</span>
+            <p style="font-size:0.875rem;color:#4b5563;">Concord, NH</p>
+          </div>
+        </div>
+        <div class="reveal" style="border:1px solid #e5e7eb;background:#ffffff;">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800" alt="Route 7 Bridge Reconstruction project in progress" style="width:100%;height:14rem;object-fit:cover;display:block;" />
+          <div style="padding:1.5rem;">
+            <h3 style="font-size:1.1rem;font-weight:700;color:#0f1923;margin-bottom:0.5rem;">Route 7 Bridge Reconstruction</h3>
+            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a5a99;display:block;margin-bottom:0.5rem;">Bridge &amp; Road</span>
+            <p style="font-size:0.875rem;color:#4b5563;">Burlington, VT</p>
+          </div>
+        </div>
+        <div class="reveal" style="border:1px solid #e5e7eb;background:#ffffff;">
+          <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800" alt="North Country Data Center commercial construction" style="width:100%;height:14rem;object-fit:cover;display:block;" />
+          <div style="padding:1.5rem;">
+            <h3 style="font-size:1.1rem;font-weight:700;color:#0f1923;margin-bottom:0.5rem;">North Country Data Center</h3>
+            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a5a99;display:block;margin-bottom:0.5rem;">Commercial Build</span>
+            <p style="font-size:0.875rem;color:#4b5563;">Littleton, NH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: TESTIMONIALS -->
+  <section style="background-color:#0f1923;padding:6rem 1.5rem;" aria-labelledby="testimonials-heading">
+    <div style="max-width:80rem;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:4rem;">
+        <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:0.75rem;" aria-hidden="true">What Clients Say</p>
+        <h2 id="testimonials-heading" style="font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:#ffffff;">Trusted on every job site.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;">
+        <div class="reveal" style="border-left:2px solid #4a9eff;padding:0.5rem 0 0.5rem 2rem;">
+          <span style="font-size:4rem;font-weight:700;color:#4a9eff;line-height:1;display:block;">&ldquo;</span>
+          <p style="font-size:1.1rem;color:#ffffff;font-style:italic;line-height:1.7;margin-bottom:1.5rem;margin-top:-1rem;">
+            Ironveil delivered our 40-acre site prep two weeks ahead of schedule and under budget. Their equipment and crew are second to none in the region.
+          </p>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#4a9eff;margin-bottom:0.25rem;">Michael Torres</p>
+          <p style="font-size:0.875rem;color:#a8b8c8;">Director of Operations, NorthStar Development</p>
+        </div>
+        <div class="reveal" style="border-left:2px solid #4a9eff;padding:0.5rem 0 0.5rem 2rem;">
+          <span style="font-size:4rem;font-weight:700;color:#4a9eff;line-height:1;display:block;">&ldquo;</span>
+          <p style="font-size:1.1rem;color:#ffffff;font-style:italic;line-height:1.7;margin-bottom:1.5rem;margin-top:-1rem;">
+            We've worked with dozens of contractors over the years. Ironveil is the only team we trust for critical infrastructure projects. They simply get it done.
+          </p>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#4a9eff;margin-bottom:0.25rem;">Sarah Chen</p>
+          <p style="font-size:0.875rem;color:#a8b8c8;">VP of Construction, Green Mountain Energy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CTA BANNER -->
+  <section style="position:relative;padding:6rem 1.5rem;overflow:hidden;background:linear-gradient(135deg, #0f1923 60%, #1a3a5c 100%);" aria-labelledby="cta-heading" class="diagonal-bg">
+    <div style="position:relative;max-width:56rem;margin:0 auto;text-align:center;">
+      <div class="reveal">
+        <h2 id="cta-heading" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:#ffffff;margin-bottom:1rem;">Ready to break ground?</h2>
+        <p style="font-size:1.1rem;color:#a8c4d0;margin-bottom:2.5rem;max-width:36rem;margin-left:auto;margin-right:auto;">
+          Let's discuss your next project. Our team is ready to deliver.
+        </p>
+        <button type="button" style="padding:1rem 2.5rem;background:#1a6db5;color:#ffffff;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;">
+          Start Your Project
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;background-color:#0a1520;padding:4rem 1.5rem 2rem;overflow:hidden;border-top:1px solid rgba(74,158,255,0.15);" class="diamond-bg">
+    <div style="position:relative;z-index:1;max-width:80rem;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;margin-bottom:3rem;">
+        <div>
+          <span style="font-size:1.5rem;font-weight:900;letter-spacing:-0.02em;color:#ffffff;text-transform:uppercase;display:block;margin-bottom:0.75rem;">IRONVEIL</span>
+          <p style="font-size:0.875rem;color:#a8b8c8;line-height:1.7;">Building the North Country Since 2006</p>
+        </div>
+        <div>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#a8b8c8;margin-bottom:1rem;">Navigation</p>
+          <nav style="display:flex;flex-direction:column;gap:0.75rem;" aria-label="Footer navigation">
+            <a href="#" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#a8b8c8;">Projects</a>
+            <a href="#" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#a8b8c8;">Services</a>
+            <a href="#" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#a8b8c8;">About</a>
+            <a href="#" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#a8b8c8;">Safety</a>
+            <a href="#" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#a8b8c8;">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#a8b8c8;margin-bottom:1rem;">Get in Touch</p>
+          <div style="display:flex;flex-direction:column;gap:0.4rem;">
+            <p style="font-size:0.875rem;color:#a8b8c8;">Littleton, NH 03561</p>
+            <p style="font-size:0.875rem;color:#a8b8c8;">info@ironveilconstruction.com</p>
+            <p style="font-size:0.875rem;color:#a8b8c8;">(603) 555-0294</p>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem;text-align:center;">
+        <p style="font-size:0.75rem;color:#a8b8c8;">© 2026 Ironveil Construction. All rights reserved. This is a portfolio demo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    // Video fade-in
+    const video = document.getElementById('hero-video');
+    if (video) {
+      video.addEventListener('canplay', () => { video.style.opacity = '1'; });
+    }
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Navbar hide/show on scroll
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (!navbar) return;
+      const current = window.scrollY;
+      if (current > 100 && current > lastScrollY) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastScrollY = current;
+    });
+  </script>
+
+</body>
 </html>
