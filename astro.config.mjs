@@ -4,5 +4,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://demo3.jakefixestech.com',
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      customPages: ['https://demo3.jakefixestech.com/'],
+    }),
+  ],
 });
